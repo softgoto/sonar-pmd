@@ -44,7 +44,7 @@ public class PmdPlugin implements Plugin {
                 PmdConfiguration.class,
                 PmdExecutor.class,
                 PmdRulesDefinition.class,
-                PmdUnitTestsRulesDefinition.class,
+//                PmdUnitTestsRulesDefinition.class,
                 PmdProfileExporter.class,
                 PmdProfileImporter.class,
                 PmdViolationRecorder.class

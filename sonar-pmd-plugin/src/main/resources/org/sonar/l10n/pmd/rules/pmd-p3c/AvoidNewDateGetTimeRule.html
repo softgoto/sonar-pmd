@@ -1,0 +1,18 @@
+<p>获取当前毫秒数：System.currentTimeMillis(); 而不是new Date().getTime();</p>
+<p>说明：如果想获取更加精确的纳秒级时间值，用System.nanoTime。在JDK8中，针对统计时间等场景，推荐使用Instant类。</p>
+<p>Examples:</p>
+<pre>
+    public class TimeMillisDemo {<br>
+        public static void main(String args[]) {<br>
+            // Positive example:
+  <br>
+            long a = System.currentTimeMillis();<br>
+            // Negative example:
+  <br>
+            long b = new Date().getTime();<br>
+    <br>
+            System.out.println(a);<br>
+            System.out.println(b);<br>
+        }<br>
+    }
+</pre>

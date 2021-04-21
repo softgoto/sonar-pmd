@@ -1,0 +1,19 @@
+<p>不要在foreach循环里进行元素的remove/add操作，remove元素请使用Iterator方式。</p>
+<p>Examples:</p>
+<pre>
+   Negative example:   <br>
+       List&lt;String&gt; originList = new ArrayList&lt;String&gt;();<br>
+       originList.add("22");<br>
+       for (String item : originList) { <br>
+          //warn<br>
+          list.add("bb");<br>
+       }<br><br>
+   Positive example: <br>
+       Iterator&lt;Integer&gt; it=b.iterator();     <br>
+       while(it.hasNext()){      <br>
+          Integer temp =  it.next();    <br>
+          if (delCondition) {<br>
+              it.remove();<br>
+          }<br>
+       }<br>
+</pre>

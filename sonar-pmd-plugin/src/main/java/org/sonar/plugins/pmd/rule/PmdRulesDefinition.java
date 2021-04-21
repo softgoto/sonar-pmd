@@ -62,7 +62,7 @@ public final class PmdRulesDefinition implements RulesDefinition {
                 .createRepository(PmdConstants.REPOSITORY_KEY, PmdConstants.LANGUAGE_KEY)
                 .setName(PmdConstants.REPOSITORY_NAME);
 
-        extractRulesData(repository, "/org/sonar/plugins/pmd/rules.xml", "/org/sonar/l10n/pmd/rules/pmd");
+        extractRulesData(repository, "/org/sonar/plugins/pmd/rules-p3c.xml", "/org/sonar/l10n/pmd/rules/pmd-p3c");
 
         repository.done();
     }

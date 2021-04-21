@@ -1,0 +1,62 @@
+<p>注解【Transactional】需要设置rollbackFor属性。</p>
+<p>事务场景中，抛出异常被catch后，如果需要回滚，一定要手动回滚事务。</p>
+<p>Examples:</p>
+<pre>
+    Positive example 1：<br>
+        /**<br>
+         * @author caikang<br>
+         * @date 2017/04/07<br>
+         */<br>
+        @Service<br>
+        @Transactional(rollbackFor = Exception.class)<br>
+        public class UserServiceImpl implements UserService {<br>
+            @Override<br>
+            public void save(User user) {<br>
+                //some code<br>
+                //db operation<br>
+            }<br>
+        }<br><br>
+    Positive example 2：<br>
+        /**<br>
+         * @author caikang<br>
+         * @date 2017/04/07<br>
+         */<br>
+        @Service<br>
+        public class UserServiceImpl implements UserService {<br>
+            @Override<br>
+            @Transactional(rollbackFor = Exception.class)<br>
+            public void save(User user) {<br>
+                //some code<br>
+                //db operation<br>
+            }<br>
+        }<br><br>
+    Positive example 3：<br>
+        /**<br>
+         * @author caikang<br>
+         * @date 2017/04/07<br>
+         */<br>
+        @Service<br>
+        public class UserServiceImpl implements UserService {<br>
+            @Autowired<br>
+            private DataSourceTransactionManager transactionManager;<br>
+<br>
+            @Override<br>
+            @Transactional<br>
+            public void save(User user) {<br>
+                DefaultTransactionDefinition def = new DefaultTransactionDefinition();<br>
+                // explicitly setting the transaction name is something that can only be done programmatically<br>
+                def.setName("SomeTxName");<br>
+                def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);<br>
+<br>
+                TransactionStatus status = transactionManager.getTransaction(def);<br>
+                try {<br>
+                    // execute your business logic here<br>
+                    //db operation<br>
+                } catch (Exception ex) {<br>
+                    transactionManager.rollback(status);<br>
+                    throw ex;<br>
+                }<br>
+            }<br>
+        }
+</pre>
+

@@ -1,0 +1,38 @@
+<p>浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用equals来判断</p>
+<p>浮点数采用“尾数+阶码”的编码方式，类似于科学计数法的“有效数字+指数”的表示方式。二进制无法精确表示大部分的十进制小数，具体原理参考《码出高效》 改进方式:
+<p>
+  1）指定一个误差范围，两个浮点数的差值在此范围之内，则认为是相等的<br>
+  float a = 1.0f - 0.9f;<br>
+  float b = 0.9f - 0.8f;<br>
+  float diff = 1e-6f;<br>
+    <br>
+  if (Math.abs(a - b) < diff) {<br>
+  System.out.println("true");<br>
+  }<br><br>
+  2) 使用BigDecimal来定义值，再进行浮点数的运算操作<br>
+  BigDecimal a = new BigDecimal("1.0");<br>
+  BigDecimal b = new BigDecimal("0.9");<br>
+  BigDecimal c = new BigDecimal("0.8");<br>
+    <br>
+  BigDecimal x = a.subtract(b);<br>
+  BigDecimal y = b.subtract(c);<br>
+    <br>
+  if (x.equals(y)) {<br>
+  System.out.println("true");<br>
+  }<br>
+</p>
+<p>Examples:</p>
+<pre>
+    Negative example:<br>
+        float g = 0.7f-0.6f;<br>
+        float h = 0.8f-0.7f;<br>
+        if (g == h) {<br>
+            System.out.println("true");<br>
+        }<br>
+<br><br>
+    Positive example:<br>
+        double dis = 1e-6;<br>
+        double d1 = 0.0000001d;<br>
+        double d2 = 0d;<br>
+        System.out.println(Math.abs(d1 - d2) < dis);<br>
+</pre>
